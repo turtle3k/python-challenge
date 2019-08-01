@@ -54,10 +54,10 @@ ttl_months = len(date)
 #avg_chg = sum(porl_chg_list)
 # print(porl_chg_list)
 # avg_chg = sum(int(i) for i in porl_chg_list)
-for i in porl_chg_list
-	ttl_chg += porl_chg_list(i)
+#for i in porl_chg_list
+	#ttl_chg += porl_chg_list(i)
 
-avg_chg = ttl_chg / ttl_months
+avg_chg = round(sum(porl_chg_list) / ttl_months, 2)
 
 
 # Print the results to terminal
@@ -70,3 +70,12 @@ print("Greatest Increase in Profits: " + gr_incr_mo + "  $" + str(gr_incr))
 print("Greatest Decrease in Profits: " + gr_decr_mo + "  $" + str(gr_decr))
 
 # Write the results and export as a text file
+f = open('pyBank_csvfile.csv','w')
+f.write('Financial Analysis\n') 
+## Python will convert \n to os.linesep
+f.write("Total Months: " + str(ttl_months) + "\n")
+f.write("Total: $" + str(ttl_porl) + "\n")
+f.write("Average Change: $" + str(avg_chg) + "\n")
+f.write("Greatest Increase in Profits: " + gr_incr_mo + "  $" + str(gr_incr) + "\n")
+f.write("Greatest Decrease in Profits: " + gr_decr_mo + "  $" + str(gr_decr) + "\n")
+f.close()
