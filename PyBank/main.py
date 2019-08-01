@@ -45,17 +45,28 @@ porl_chg_list = []
 # Run calculation to figure out greatest profit increase and greatest loss decrease
 for row in range(len(porl)):
 	ttl_porl += porl[row]
-	porl_change = porl[row] - prev_porl
+	porl_change = porl[row] - porl[row-1]
+	#porl_change = porl[row] - prev_porl
 	porl_chg_list.append(porl_change)
+	#prev_porl = porl[row]
 	if porl_change >= gr_incr:
 		gr_incr = porl_change
 		gr_incr_mo = date[row]
+		#prev_porl = porl_change
 	elif porl_change <= gr_decr:
 		gr_decr = porl_change
 		gr_decr_mo = date[row]
+		#prev_porl = porl_change
 		
 ttl_months = len(date)
-avg_chg = round(sum(porl_chg_list)/ttl_months)
+
+sum_of_changes = sum(porl_chg_list)
+avg = sum_of_changes / ttl_months
+print(sum_of_changes)
+print(ttl_months)
+print(avg)
+#avg_chg = round(sum(porl_chg_list)/ttl_months)
+avg_chg = ttl_porl/ttl_months
 
 
 # Print the results to terminal
@@ -63,7 +74,7 @@ print("Financial Analysis")
 print("-" * 45)
 print("Total Months: " + str(ttl_months))
 print("Total: $" + str(ttl_porl))
-print("Average Change: " + str(avg_chg))
+#print("Average Change: " + str(avg_chg))
 print("Greatest Increase in Profits: " + gr_incr_mo + "  " + str(gr_incr))
 print("Greatest Decrease in Profits: " + gr_decr_mo + "  " + str(gr_decr))
 
