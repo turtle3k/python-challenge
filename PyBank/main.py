@@ -24,7 +24,6 @@ with open(budgetData_csv, newline='', encoding='utf-8') as csvfile:
         #print(int(row[1]))
         date.append(row[0])
         #print(date)
-	    #porl.append(int(row[1]))
         porl.append(int(row[1]))
 
 		
@@ -34,12 +33,13 @@ gr_incr = 0
 gr_decr = 0
 porl_change = 0
 porl_chg_list = []
-
+ttl_months = len(porl)
+prev_porl = porl[0]  #Set the previous profit or loss to the first month
 
 # Run calculation to figure out greatest profit increase and greatest loss decrease
 for row in range(len(porl)):
 	ttl_porl += porl[row]
-	porl_change = porl[row] - porl[row-1]
+	porl_change = porl[row] - prev_porl
 	porl_chg_list.append(porl_change) 
 	if porl_change >= gr_incr:
 		gr_incr = porl_change
@@ -47,17 +47,13 @@ for row in range(len(porl)):
 	elif porl_change <= gr_decr:
 		gr_decr = porl_change
 		gr_decr_mo = date[row]
-		
-ttl_months = len(date)
-#avg_chg = round(sum(porl_chg_list)/ttl_months, 2)
-#can't get porl_chg_list to sum.   what up??
-#avg_chg = sum(porl_chg_list)
+	prev_porl = porl[row]	
+	
+# print(len(porl_chg_list))
+# print(sum(porl_chg_list))
 # print(porl_chg_list)
-# avg_chg = sum(int(i) for i in porl_chg_list)
-#for i in porl_chg_list
-	#ttl_chg += porl_chg_list(i)
-
-avg_chg = round(sum(porl_chg_list) / ttl_months, 2)
+# Number of CHANGES in profit or loss are n-1 months, so ttl_months - 1
+avg_chg = round(sum(porl_chg_list) / (ttl_months - 1), 2)
 
 
 # Print the results to terminal
