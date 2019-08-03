@@ -46,17 +46,29 @@ for crook, votes in vote_count_lib.items():
 		
 # Print/write out the results to terminal
 print(f'Election Results')
-print("-" * 25)
+print(f'{"-" * 29}')
 print(f'Total Votes: {vote_total}')
-print("-" * 25)
+print(f'{"-" * 29}')
 for crook, votes in vote_count_lib.items():
-	print(f'{crook}: {crook_percent_lib[crook]}  ({votes})')
-print("-" * 25)
+	print(f'{crook:10}: {crook_percent_lib[crook]:6}  ({votes})')  
+	#note the :10 and :6 are formatting - i.e. amount of spaces so the columns line up better
+print(f'{"-" * 29}')
 print(f'Winner: {grand_poohbah}')
-print("-" * 25)
+print(f'{"-" * 29}')
 
-
-# Print/write results to a file
-		
-
-		
+# Print/write results to a text file
+#electionResults_txt = os.path.join('Resources', 'election_results.txt')
+#with open(electionResults_txt, "w", newline="") as text:
+#	writer.writerow[
+#electionResults_txt = os.path.join('Resources', 'election_results.txt')
+writefile = open('electionResults.txt' , 'w')
+writefile.write('Election Results\n')
+writefile.write(f'{"-" * 29} \n')
+writefile.write(f'Total Votes: {vote_total}\n')
+writefile.write(f'{"-" * 29} \n')
+for crook, votes in vote_count_lib.items():
+	writefile.write(f'{crook:10}: {crook_percent_lib[crook]:6}  ({votes}) \n')
+writefile.write(f'{"-" * 29} \n')
+writefile.write(f'Winner: {grand_poohbah} \n')
+writefile.write(f'{"-" * 29} \n')	
+writefile.close()	
