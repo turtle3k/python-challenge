@@ -37,7 +37,7 @@ with open(electionData_csv, newline='', encoding='utf-8') as csvfile:
 
 # Data is in, get % for each crook,err candidate and figure out the winner
 # vote_total = len(vote_count_lib) - calculating above - take out above & use this??
-print(vote_total)
+# print(vote_total)  #Used as quick ck - file importing, counting rows/votes
 for crook, votes in vote_count_lib.items():
 	crook_percent_lib[crook] = '{0:.0%}'.format(votes / vote_total)
 	if votes > most_votes:
@@ -46,9 +46,14 @@ for crook, votes in vote_count_lib.items():
 		
 # Print/write out the results to terminal
 print(f'Election Results')
-print("-" * 45)
+print("-" * 25)
 print(f'Total Votes: {vote_total}')
-print("-" * 45)
+print("-" * 25)
+for crook, votes in vote_count_lib.items():
+	print(f'{crook}: {crook_percent_lib[crook]}  ({votes})')
+print("-" * 25)
+print(f'Winner: {grand_poohbah}')
+print("-" * 25)
 
 
 # Print/write results to a file
