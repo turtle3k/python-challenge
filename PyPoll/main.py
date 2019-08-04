@@ -26,9 +26,11 @@ with open(electionData_csv, newline='', encoding='utf-8') as csvfile:
 	for row in csvreader:
 		vote_total += +1
 		crook = row[2]
+		#if the crook is already listed, add 1 to his/her vote count
 		if crook in vote_count_lib:
 			vote_count_lib[crook] += +1
 		else:
+		    #if the crook is not listed, then add them to the list with an initial 1 vote
 			vote_count_lib[crook] = 1
 	
 
@@ -52,10 +54,6 @@ print(f'Winner: {grand_poohbah}')
 print(f'{"-" * 31}')
 
 # Print/write results to a text file
-#electionResults_txt = os.path.join('Resources', 'election_results.txt')
-#with open(electionResults_txt, "w", newline="") as text:
-#	writer.writerow[
-#electionResults_txt = os.path.join('Resources', 'election_results.txt')
 writefile = open('electionResults.txt' , 'w')
 writefile.write('Election Results\n')
 writefile.write(f'{"-" * 31} \n')
