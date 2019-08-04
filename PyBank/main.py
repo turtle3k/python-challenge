@@ -66,7 +66,7 @@ print("Greatest Increase in Profits: " + gr_incr_mo + "  $" + str(gr_incr))
 print("Greatest Decrease in Profits: " + gr_decr_mo + "  $" + str(gr_decr))
 
 # Write the results and export as a text file
-f = open('pyBank_csvfile.csv','w')
+f = open('pyBank_resultfile.txt','w')
 f.write('Financial Analysis\n') 
 ## Python will convert \n to os.linesep
 f.write("Total Months: " + str(ttl_months) + "\n")
